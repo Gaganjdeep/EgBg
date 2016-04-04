@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:gravity="center_horizontal"
+              android:orientation="vertical">
+
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/orange"
+        android:elevation="4dp"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+
+            <TextView
+
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Reminder Complete"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+
+
+        </LinearLayout>
+
+
+    </android.support.v7.widget.Toolbar>
+
+    <com.ameba.ggn.ez_buzz.utillG.RoundedCornersGaganImg
+        android:id="@+id/imgVReminderImg"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_margin="10dp"
+        android:scaleType="fitXY"
+        android:src="@mipmap/no_img"/>
+
+    <TextView
+        android:id="@+id/txtPhoneNumber"
+        style="@style/TextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/txtTitle"
+        style="@style/TextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:text=""
+        android:textColor="@color/orange"
+        android:textStyle="bold"/>
+
+
+    <TextView
+        android:id="@+id/txtNotes"
+        style="@style/TextViewStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Note"
+        android:layout_margin="10dp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layoutbtnCallContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:padding="4dp">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnCall"
+                style="@style/MyMaterialTheme.Base.Scaled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="cAll"
+                android:src="@mipmap/calling_icon"
+                app:backgroundTint="@color/orange"
+                app:elevation="4dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutbtnMsgContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <android.support.design.widget.FloatingActionButton
+                style="@style/MyMaterialTheme.Base.Scaled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:onClick="msgWhatsapp"
+                android:src="@mipmap/whatsapp_icon"
+                app:backgroundTint="@color/whatsapp_color"
+                app:elevation="4dp"/>
+
+            <android.support.design.widget.FloatingActionButton
+                style="@style/MyMaterialTheme.Base.Scaled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:onClick="mSg"
+                android:src="@mipmap/msg_icon"
+                app:backgroundTint="@color/orange"
+                app:elevation="4dp"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutbtnOtherContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="4dp">
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/btnEdit"
+                style="@style/MyMaterialTheme.Base.Scaled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="editReminder"
+                android:src="@mipmap/edit_icon"
+                app:backgroundTint="@color/orange"
+                app:elevation="4dp"/>
+
+            <android.support.design.widget.FloatingActionButton
+                style="@style/MyMaterialTheme.Base.Scaled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:onClick="dOne"
+                android:src="@mipmap/complete_icon"
+                android:text="Done"
+                app:backgroundTint="@color/orange"
+                app:elevation="4dp"/>
+
+            <android.support.design.widget.FloatingActionButton
+                style="@style/MyMaterialTheme.Base.Scaled"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="delEte"
+                android:src="@android:drawable/ic_menu_delete"
+                app:backgroundTint="@color/orange"
+                app:elevation="4dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</LinearLayout>

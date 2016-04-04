@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Call or message using EasyBeeZee.. OR set reminders for call just in a single click..!"
+        android:textSize="14sp"
+        android:textStyle="italic"
+        android:textColor="@color/dk_grey"/>
+
+
+    <TextView
+        android:id="@+id/txtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textColor="@color/orange"
+        android:textSize="21sp"
+        android:textStyle="bold"/>
+
+
+    <TextView
+        android:id="@+id/txtPhoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number"
+        android:textColor="@color/black"
+        android:textSize="19sp"/>
+
+
+    <LinearLayout
+        android:id="@+id/layoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="7dp">
+
+
+        <android.support.design.widget.FloatingActionButton
+            style="@style/MyMaterialTheme.Base.Scaled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="msgWhatsapp"
+            android:src="@mipmap/whatsapp_icon"
+            app:backgroundTint="@color/whatsapp_color"
+            app:elevation="4dp"/>
+
+        <android.support.design.widget.FloatingActionButton
+            style="@style/MyMaterialTheme.Base.Scaled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:onClick="mSg"
+            android:src="@mipmap/msg_icon"
+            app:backgroundTint="@color/orange"
+            app:elevation="4dp"/>
+
+        <android.support.design.widget.FloatingActionButton
+            style="@style/MyMaterialTheme.Base.Scaled"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="cAll"
+            android:src="@mipmap/calling_icon"
+            app:backgroundTint="@color/orange"
+            app:elevation="4dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvAlreadyHaveReminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="NOTE-You have already set reminder for this contact !"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold|italic"
+        android:visibility="gone"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="setReminder"
+        android:text="Set Reminder"/>
+
+    <Button
+        android:textAllCaps="false"
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="canCel"
+        android:text="Cancel"/>
+
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="320dp"
+        android:layout_height="50dp"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-8601880842629182/4212572539">
+    </com.google.android.gms.ads.AdView>
+
+
+</LinearLayout>

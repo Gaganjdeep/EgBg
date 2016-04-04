@@ -5,4 +5,79 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="TextViewStyle">
+
+        <item name="android:textSize">17sp</item>
+
+    </style>
+
+    <style name="MyMaterialTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:colorPrimary">@color/orange</item>
+        <item name="android:colorPrimaryDark">@color/orange</item>
+        <item name="android:colorAccent">@color/orange</item>
+        <item name="android:textColorPrimary">@color/orange</item>
+
+    </style>
+
+
+    <style name="actionbar_whiteback" parent="MyMaterialTheme.Base">
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
+
+
+
+
+    <style name="Theme_DialogG" parent="Base.Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+    <style name="Theme_DialogAlarm" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <style name="Theme_Dialog" parent="android:Theme.Light">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+
+
+    <style name="MyTextInputLayout" parent="MyMaterialTheme.Base">
+        <item name="colorAccent">@color/orange</item>
+        <item name="colorControlActivated">@color/orange</item>
+    </style>
+
+
+    <style name="MyMaterialTheme.Base.Scaled">
+        <item name="android:scaleX">0.0</item>
+        <item name="android:scaleY">0.0</item>
+    </style>
+
+
+    <style name="textstyleOrangeBig">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/orange</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
+
+    <style name="MyMaterialTheme.Base.AppBarOverlay"
+           parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="MyMaterialTheme.Base.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+
 </resources>
