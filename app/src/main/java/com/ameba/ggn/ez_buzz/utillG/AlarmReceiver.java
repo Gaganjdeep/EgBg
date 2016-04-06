@@ -50,9 +50,11 @@ public class AlarmReceiver extends BroadcastReceiver
                 Uri imageUri = Uri.parse(taskData.getImage());
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), imageUri);
 //        }
-                builder.setLargeIcon(bitmap);
+
+
+                builder.setLargeIcon(Bitmap.createScaledBitmap(bitmap, 50, 50, true));
             }
-            catch (IOException e)
+            catch (Exception e)
             {
                 e.printStackTrace();
             }

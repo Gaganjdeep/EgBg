@@ -127,8 +127,8 @@ public class PrefHelper
             dataChkBox.put(all_call, shrdPref.getBoolean(all_call, false));
             dataChkBox.put(incoming_call_end, shrdPref.getBoolean(incoming_call_end, true));
             dataChkBox.put(outgoing_call_end, shrdPref.getBoolean(outgoing_call_end, true));
-            dataChkBox.put(missed_call, shrdPref.getBoolean(missed_call, false));
-            dataChkBox.put(call_rejected, shrdPref.getBoolean(call_rejected, false));
+            dataChkBox.put(missed_call, shrdPref.getBoolean(missed_call, true));
+            dataChkBox.put(call_rejected, shrdPref.getBoolean(call_rejected, true));
 
         }
         catch (Exception e)
@@ -162,7 +162,7 @@ public class PrefHelper
 
     static final String isFirstTime = "isFirstOpen";
 
-    public static void setFirstTime(Context con,boolean isfirst)
+    public static void setFirstTime(Context con, boolean isfirst)
     {
         try
         {

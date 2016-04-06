@@ -109,6 +109,7 @@ public class AfterCallActivity extends AppCompatActivity
                     showTimer(finishTime + "");
                     finishTime--;
                 }
+
                 @Override
                 public void onFinish()
                 {
@@ -177,52 +178,18 @@ public class AfterCallActivity extends AppCompatActivity
 
     public void mSg(View view)
     {
-        String number = numberCalled;  // The number on which you want to send SMS
 
-        Uri    uri    = Uri.parse("smsto:" + number);
-        Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
-        intent.putExtra("sms_body", "");
-        startActivityForResult(Intent.createChooser(intent, "Choose Messaging App"), 0);
+        Utills.sendMSG(AfterCallActivity.this, numberCalled, "");
     }
 
     public void msgWhatsapp(View view)
     {
-        try
-        {
-            if (isPackageExisted("com.whatsapp"))
-            {
-                String number = numberCalled;
+        Utills.sendWhatsAppMsg(AfterCallActivity.this, numberCalled);
 
-                Uri uri = Uri.parse("smsto:" + number);
-                Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-                i.setPackage("com.whatsapp");
-                startActivity(Intent.createChooser(i, ""));
-            }
-            else
-            {
-                Utills.showToast("Whats app not installed..!", AfterCallActivity.this, true);
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
 
-    public boolean isPackageExisted(String targetPackage)
-    {
-        PackageManager pm = getPackageManager();
-        try
-        {
-            PackageInfo info = pm.getPackageInfo(targetPackage, PackageManager.GET_META_DATA);
-        }
-        catch (PackageManager.NameNotFoundException e)
-        {
-            return false;
-        }
-        return true;
-    }
+
 
     public void canCel(View view)
     {

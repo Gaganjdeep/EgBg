@@ -227,7 +227,7 @@ public class EditTask extends AppCompatActivity implements View.OnClickListener
     public void tenMin(View view)
     {
 
-        long timeForAlarm = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(1);
+        long timeForAlarm = System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(10);
         updateReminder(timeForAlarm);
     }
 

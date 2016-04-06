@@ -134,7 +134,7 @@ public class DBTools extends SQLiteOpenHelper
         values.put("phone", taskData.get("phone"));
 
 
-        int g=database.update("tasks", values, "id" + " = ?", new String[]{taskID + ""});
+        int g = database.update("tasks", values, "id" + " = ?", new String[]{taskID + ""});
 
         database.close();
 
@@ -207,7 +207,6 @@ public class DBTools extends SQLiteOpenHelper
 
     public int getReminderCountByNumber(String Number)
     {
-
         //Select All Query
         try
         {
@@ -216,7 +215,7 @@ public class DBTools extends SQLiteOpenHelper
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cursor = db.rawQuery(selectQuery, null);
 
-            int count= cursor.getCount();
+            int count = cursor.getCount();
 
             cursor.close();
             db.close();
