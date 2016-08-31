@@ -1,15 +1,12 @@
 package com.ameba.ggn.ez_buzz;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.view.View;
@@ -17,6 +14,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ameba.ggn.ez_buzz.realmUtills.EventInfo;
+import com.ameba.ggn.ez_buzz.realmUtills.RealmHelperG;
 import com.ameba.ggn.ez_buzz.utillG.DBTools;
 import com.ameba.ggn.ez_buzz.utillG.GlobalConstantsG;
 import com.ameba.ggn.ez_buzz.utillG.PrefHelper;
@@ -25,12 +24,14 @@ import com.ameba.ggn.ez_buzz.utillG.Utills;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
+import java.util.List;
+
 public class AfterCallActivity extends AppCompatActivity
 {
     String numberCalled = "";
 
-    TextView txtName, txtPhoneNumber, tvAlreadyHaveReminder;
-
+    private TextView txtName, txtPhoneNumber, tvAlreadyHaveReminder;
+    private LinearLayout layoutEvents;
 
     Button btnCancel;
 
@@ -46,11 +47,11 @@ public class AfterCallActivity extends AppCompatActivity
 //        wmlp.dimAmount = 0.6f;
         try
         {
-            String androidId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
 
-            AdView mAdView = (AdView) findViewById(R.id.adView);
-            AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR)
-                    .addTestDevice(MD5(androidId).toUpperCase()).build();
+
+            AdView    mAdView   = (AdView) findViewById(R.id.adView);
+            AdRequest adRequest = new AdRequest.Builder().addTestDevice("E33B04E738A4BC55C88E6E171ECDD0AD").build();
+//            AdRequest.Builder.addTestDevice("E33B04E738A4BC55C88E6E171ECDD0AD");
 
             mAdView.loadAd(adRequest);
         }
@@ -88,6 +89,20 @@ public class AfterCallActivity extends AppCompatActivity
 
 
         startTimer();
+
+
+        layoutEvents = (LinearLayout) findViewById(R.id.layoutEvents);
+        List<EventInfo> listEvents = RealmHelperG.getInstance(AfterCallActivity.this).GET_EVENTS();
+        if (listEvents != null && listEvents.size() > 0)
+        {
+            for (EventInfo event : listEvents)
+            {
+                TextView tvEvent = new TextView(AfterCallActivity.this);
+                tvEvent.setTextColor(Color.BLACK);
+                tvEvent.setText(String.format("%s " + (event.getEvent_type().equals("Outgoing Call") ? "to" : "from") + " %s", event.getEvent_type(), event.getName()));
+                layoutEvents.addView(tvEvent);
+            }
+        }
 
     }
 
@@ -139,11 +154,14 @@ public class AfterCallActivity extends AppCompatActivity
 
     public String MD5(String md5)
     {
+
+//        .addTestDevice(MD5(androidId).toUpperCase()
+//        String androidId = Settings.Secure.getString(this.getContentResolver(), Settings.Secure.ANDROID_ID);
         try
         {
-            java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
-            byte[] array = md.digest(md5.getBytes());
-            StringBuffer sb = new StringBuffer();
+            java.security.MessageDigest md    = java.security.MessageDigest.getInstance("MD5");
+            byte[]                      array = md.digest(md5.getBytes());
+            StringBuffer                sb    = new StringBuffer();
             for (int i = 0; i < array.length; ++i)
             {
                 sb.append(Integer.toHexString((array[i] & 0xFF) | 0x100).substring(1, 3));
@@ -164,9 +182,14 @@ public class AfterCallActivity extends AppCompatActivity
     public void onUserInteraction()
     {
 
-        handler.cancel();
+        if (handler != null)
+        {
+            handler.cancel();
+            btnCancel.setText("CANCEL");
 
-        startTimer();
+        }
+
+//        startTimer();
         super.onUserInteraction();
     }
 
@@ -187,8 +210,6 @@ public class AfterCallActivity extends AppCompatActivity
         Utills.sendWhatsAppMsg(AfterCallActivity.this, numberCalled);
 
     }
-
-
 
 
     public void canCel(View view)

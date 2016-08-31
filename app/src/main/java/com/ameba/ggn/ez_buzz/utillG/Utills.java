@@ -27,8 +27,6 @@ import com.ameba.ggn.ez_buzz.Task;
 
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by gagandeep on 22 Dec 2015.
@@ -133,7 +131,11 @@ public class Utills
         {
             activity.startActivity(new Intent(activity, target));
         }
+
     }
+
+
+
 
     public static void copyStream(InputStream input, OutputStream output)
     {
@@ -290,8 +292,6 @@ public class Utills
                 Uri uri = Uri.parse("smsto:" + number);
                 i = new Intent(Intent.ACTION_SENDTO, uri);
                 i.setPackage("com.whatsapp");
-//                i.putExtra(Intent.EXTRA_TEXT, "I'm the body.");
-
                 if (!(context instanceof MainActivity))
                 {
                     context.startActivity(Intent.createChooser(i, ""));

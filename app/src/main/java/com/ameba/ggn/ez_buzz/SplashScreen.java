@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.ameba.ggn.ez_buzz.app_intro.ColorAnimation;
+import com.ameba.ggn.ez_buzz.realmUtills.RealmHelperG;
 import com.ameba.ggn.ez_buzz.utillG.PrefHelper;
 import com.ameba.ggn.ez_buzz.utillG.Utills;
 
@@ -25,8 +26,7 @@ public class SplashScreen extends AppCompatActivity
 
 
         startUp();
-
-
+//        RealmHelperG.getInstance(SplashScreen.this).DELETE_ALL_EVENTS();
     }
 
 

@@ -7,17 +7,33 @@
     android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical"
-    android:padding="20dp">
+    >
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="20dp"
+            >
+
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Call or message using EasyBeeZee.. OR set reminders for call just in a single click..!"
+        android:text="@string/call_or_message_using_ez_buzz_or_set_reminders_for_call_just_in_a_single_click"
+        android:textColor="@color/dk_grey"
         android:textSize="14sp"
-        android:textStyle="italic"
-        android:textColor="@color/dk_grey"/>
+        android:textStyle="italic"/>
 
 
     <TextView
@@ -98,12 +114,12 @@
         android:text="Set Reminder"/>
 
     <Button
-        android:textAllCaps="false"
         android:id="@+id/btnCancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="canCel"
-        android:text="Cancel"/>
+        android:text="Cancel"
+        android:textAllCaps="false"/>
 
 
     <com.google.android.gms.ads.AdView
@@ -111,8 +127,28 @@
         android:layout_width="320dp"
         android:layout_height="50dp"
         app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-8601880842629182/4212572539">
+        app:adUnitId="ca-app-pub-8601880842629182/4212572539"
+        >
     </com.google.android.gms.ads.AdView>
 
+
+
+
+    <LinearLayout
+        android:layout_margin="10dp"
+        android:id="@+id/layoutEvents"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+
+
+
+
+        </LinearLayout>
+
+
+
+    </ScrollView>
 
 </LinearLayout>

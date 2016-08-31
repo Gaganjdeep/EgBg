@@ -38,6 +38,7 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="title_activity_setting">SettingActivity</string>
+    <string name="call_or_message_using_ez_buzz_or_set_reminders_for_call_just_in_a_single_click">Call or message using Ez-Buzz.. OR set reminders for call just in a single click..!</string>
 
 
     <string-array name="CountryCodes">

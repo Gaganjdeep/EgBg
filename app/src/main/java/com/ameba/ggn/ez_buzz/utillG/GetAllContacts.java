@@ -4,6 +4,7 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.provider.CallLog;
 import android.provider.ContactsContract;
 
 import com.ameba.ggn.ez_buzz.adapter.ContactsModel;
@@ -35,20 +36,34 @@ public class GetAllContacts extends AsyncTask<Void, Void, List<ContactsModel>>
     {
 
 
-        List<ContactsModel> list = new ArrayList<>();
-
-        ContentResolver cr = con.getContentResolver();
-        Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI,
-                null, null, null, null);
-        if (cur.getCount() > 0)
+        List<ContactsModel> list = null;
+        try
         {
-            while (cur.moveToNext())
+            list = new ArrayList<>();
+
+
+            String selection = ContactsContract.Contacts.HAS_PHONE_NUMBER;
+
+            String[] projection = new String[]{
+                    ContactsContract.Contacts.HAS_PHONE_NUMBER,
+                    ContactsContract.Contacts._ID,
+                    ContactsContract.CommonDataKinds.Phone.NUMBER,
+                    ContactsContract.Contacts.DISPLAY_NAME};
+
+
+            ContentResolver cr = con.getContentResolver();
+            Cursor cur = cr.query(ContactsContract.Contacts.CONTENT_URI, null, selection, null, null);
+
+
+            if (cur.getCount() > 0)
             {
-                String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
-                String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                if (Integer.parseInt(cur.getString(
-                        cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0)
+                while (cur.moveToNext())
                 {
+                    String id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
+                    String name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                    //                if (Integer.parseInt(cur.getString(
+                    //                        cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0)
+                    //                {
                     Cursor pCur = cr.query(
                             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                             null,
@@ -57,26 +72,32 @@ public class GetAllContacts extends AsyncTask<Void, Void, List<ContactsModel>>
                     while (pCur.moveToNext())
                     {
                         String phoneNo = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-//                        Toast.makeText(NativeContentProvider.this, "Name: " + name + ", Phone No: " + phoneNo, Toast.LENGTH_SHORT).show();
+
                         ContactsModel contactsModel = new ContactsModel(name, phoneNo, CallType.ALLCALLS);
                         list.add(contactsModel);
                     }
                     pCur.close();
+                    //                }
                 }
             }
-        }
+            cur.close();
 
 
-        //Sort Entries
-        Collections.sort(list, new Comparator<ContactsModel>()
-        {
-            @Override
-            public int compare(ContactsModel t1, ContactsModel t2)
+            //Sort Entries
+            Collections.sort(list, new Comparator<ContactsModel>()
             {
-                return (t1.getName()).compareToIgnoreCase(t2.getName());
-            }
-        });
+                @Override
+                public int compare(ContactsModel t1, ContactsModel t2)
+                {
+                    return (t1.getName()).compareToIgnoreCase(t2.getName());
+                }
+            });
 //
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
 
         return list;

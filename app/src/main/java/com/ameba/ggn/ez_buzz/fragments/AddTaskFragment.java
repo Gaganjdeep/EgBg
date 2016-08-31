@@ -71,6 +71,8 @@ public class AddTaskFragment extends Fragment implements View.OnClickListener
 
         View v = inflater.inflate(R.layout.activity_add_task, container, false);
 
+
+        isCreated = false;
 //        edTitle = (EditText) v.findViewById(R.id.edTitle);
         txtName = (TextView) v.findViewById(R.id.txtName);
         txtPhoneNumber = (TextView) v.findViewById(R.id.txtPhoneNumber);
@@ -243,19 +245,41 @@ public class AddTaskFragment extends Fragment implements View.OnClickListener
                 @Override
                 public void onFinishG(Intent output)
                 {
-                    Intent i = new Intent(getActivity(), MainActivity.class);
-                    startActivity(i);
-                    getActivity().finish();
+//                    Intent i = new Intent(getActivity(), MainActivity.class);
+//                    startActivity(i);
+//                    getActivity().finish();
 
                     if (output != null)
                     {
+
+                        isCreated = true;
+
                         getActivity().startActivity(Intent.createChooser(output, "Choose app to send message"));
+
 //                        context.startActivity(Intent.createChooser(intent, "Choose Messaging App"));
                     }
                 }
             });
         }
 
+    }
+
+    boolean isCreated = false;
+
+    @Override
+    public void onResume()
+    {
+        if (isCreated)
+        {
+            isCreated = false;
+            Intent i = new Intent(getActivity(), MainActivity.class);
+            startActivity(i);
+            getActivity().finish();
+
+        }
+
+
+        super.onResume();
     }
 
     public static final int PICK_CONTACT_REQUEST = 77;

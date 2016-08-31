@@ -28,7 +28,7 @@ public class PrefHelper
         {
             SharedPreferences shrdPref = con.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE);
 
-            return shrdPref.getLong(popup_dismiss_time, 5);
+            return shrdPref.getLong(popup_dismiss_time, 10);
         }
         catch (Exception e)
         {

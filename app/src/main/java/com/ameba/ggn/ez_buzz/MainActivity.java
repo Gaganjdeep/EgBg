@@ -9,6 +9,9 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -73,15 +76,41 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        if(item.getItemId()==R.id.settings)
+        {
+            startActivity(new Intent(MainActivity.this, SettingActivity.class));
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     String[] titles = {"All Reminders", "Add Reminder"};
 
 
     private void setUptoolBar()
     {
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar_title = (TextView) toolbar.findViewById(R.id.toolbar_title);
-        imgSettings = (ImageView) toolbar.findViewById(R.id.imgSettings);
+
+        try
+        {
+            setSupportActionBar(toolbar);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+//        imgSettings = (ImageView) toolbar.findViewById(R.id.imgSettings);
     }
 
 
@@ -91,7 +120,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     TextView toolbar_title;
-    ImageView imgSettings;
+//    ImageView imgSettings;
 
     AddTaskFragment addTaskFragment;
 
@@ -122,11 +151,6 @@ public class MainActivity extends AppCompatActivity
 
 
         //..
-    }
-
-    public void openSettings(View view)
-    {
-        startActivity(new Intent(MainActivity.this, SettingActivity.class));
     }
 
 

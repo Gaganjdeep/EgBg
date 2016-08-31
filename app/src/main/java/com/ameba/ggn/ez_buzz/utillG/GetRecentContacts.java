@@ -93,14 +93,14 @@ public class GetRecentContacts extends AsyncTask<Void, Void, List<ContactsModel>
 
 
         //Sort Entries
-        Collections.sort(list, new Comparator<ContactsModel>()
-        {
-            @Override
-            public int compare(ContactsModel t1, ContactsModel t2)
-            {
-                return (t1.getName()).compareToIgnoreCase(t2.getName());
-            }
-        });
+//        Collections.sort(list, new Comparator<ContactsModel>()
+//        {
+//            @Override
+//            public int compare(ContactsModel t1, ContactsModel t2)
+//            {
+//                return (t1.getName()).compareToIgnoreCase(t2.getName());
+//            }
+//        });
 //
 
 

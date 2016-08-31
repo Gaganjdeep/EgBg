@@ -11,6 +11,7 @@ import android.media.AudioManager;
 import android.telephony.TelephonyManager;
 
 import com.ameba.ggn.ez_buzz.AfterCallActivity;
+import com.ameba.ggn.ez_buzz.realmUtills.SaveEvent;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -21,7 +22,7 @@ public class CallEndBroadCastReceiver extends BroadcastReceiver
     //The receiver will be recreated whenever android feels like it.  We need a static variable to remember data between instantiations
 
     private static int lastState = TelephonyManager.CALL_STATE_IDLE;
-    private static Date callStartTime;
+    private static Date    callStartTime;
     private static boolean isIncoming;
     private static String savedNumber = "";
 
@@ -95,11 +96,13 @@ public class CallEndBroadCastReceiver extends BroadcastReceiver
     protected void onIncomingCallStarted(Context ctx, String number, Date start)
     {
 //        Toast.makeText(ctx,"incoming",Toast.LENGTH_LONG).show();
+        openAddAlarm(ctx, number);
     }
 
     protected void onOutgoingCallStarted(Context ctx, String number, Date start)
     {
 //        Toast.makeText(ctx,"incomingS",Toast.LENGTH_LONG).show();
+        openAddAlarm(ctx, number);
     }
 
     protected void onIncomingCallEnded(Context ctx, String number, boolean show)
@@ -139,21 +142,21 @@ public class CallEndBroadCastReceiver extends BroadcastReceiver
         }
     }
 
+
     //Deals with actual events
     public static boolean isCallActive(Context context)
     {
         AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-
         return manager.getMode() == AudioManager.MODE_IN_CALL;
-
     }
 
     //Incoming call-  goes from IDLE to RINGING when it rings, to OFFHOOK when it's answered, to IDLE when its hung up
     //Outgoing call-  goes from IDLE to OFFHOOK when it dials out, to IDLE when hung up
+    private boolean alreadySaved = false;
+
+
     public void onCallStateChanged(Context context, int state, String number)
     {
-
-
         if (lastState == state)
         {
             //No change, debounce extras
@@ -165,6 +168,9 @@ public class CallEndBroadCastReceiver extends BroadcastReceiver
                 isIncoming = true;
                 callStartTime = new Date();
                 savedNumber = number;
+
+                alreadySaved = false;
+
                 onIncomingCallStarted(context, number, callStartTime);
                 break;
             case TelephonyManager.CALL_STATE_OFFHOOK:
@@ -173,6 +179,7 @@ public class CallEndBroadCastReceiver extends BroadcastReceiver
                 {
                     isIncoming = false;
                     callStartTime = new Date();
+
                     onOutgoingCallStarted(context, savedNumber, callStartTime);
                 }
                 break;
@@ -183,17 +190,32 @@ public class CallEndBroadCastReceiver extends BroadcastReceiver
                 //Went to idle-  this is the end of a call.  What type depends on previous state(s)
                 if (lastState == TelephonyManager.CALL_STATE_RINGING)
                 {
+                    if (!alreadySaved)
+                    {
+                        alreadySaved = true;
+                        SaveEvent.MISSEDCALL.setData(context, System.currentTimeMillis(), savedNumber);
+                    }
                     //Ring but no pickup-  a miss
                     onMissedCall(context, savedNumber, dataChkBox.get(PrefHelper.missed_call));
                 }
                 else if (isIncoming)
                 {
                     onIncomingCallEnded(context, savedNumber, dataChkBox.get(PrefHelper.incoming_call_end));
+
+
+                    SaveEvent.INCOMINGCALL.setData(context, System.currentTimeMillis(), savedNumber);
+
                 }
                 else
                 {
 
                     onOutgoingCallEnded(context, savedNumber, dataChkBox.get(PrefHelper.outgoing_call_end));
+
+                    if (!alreadySaved)
+                    {
+                        alreadySaved = true;
+                        SaveEvent.OUTGOINGCALL.setData(context, System.currentTimeMillis(), savedNumber);
+                    }
 
                 }
                 break;

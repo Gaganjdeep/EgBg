@@ -106,12 +106,12 @@ public class UtillContacts
 
             if (CountryZipCode.equals(""))
             {
-                CountryZipCode = "97";
+                CountryZipCode = "91";
             }
         }
         catch (Exception e)
         {
-            CountryZipCode = "97";
+            CountryZipCode = "91";
             e.printStackTrace();
         }
 

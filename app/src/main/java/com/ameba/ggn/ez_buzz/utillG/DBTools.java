@@ -210,7 +210,7 @@ public class DBTools extends SQLiteOpenHelper
         //Select All Query
         try
         {
-            String selectQuery = "SELECT * FROM tasks where phone=" + Number;
+            String selectQuery = "SELECT * FROM tasks where phone='" + Number+"'";
 
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cursor = db.rawQuery(selectQuery, null);
