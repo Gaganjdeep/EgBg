@@ -25,128 +25,148 @@
             >
 
 
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="@string/call_or_message_using_ez_buzz_or_set_reminders_for_call_just_in_a_single_click"
-        android:textColor="@color/dk_grey"
-        android:textSize="14sp"
-        android:textStyle="italic"/>
-
-
-    <TextView
-        android:id="@+id/txtName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Name"
-        android:textColor="@color/orange"
-        android:textSize="21sp"
-        android:textStyle="bold"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/call_or_message_using_ez_buzz_or_set_reminders_for_call_just_in_a_single_click"
+                android:textColor="@color/dk_grey"
+                android:textSize="14sp"
+                android:textStyle="italic"/>
 
 
-    <TextView
-        android:id="@+id/txtPhoneNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Number"
-        android:textColor="@color/black"
-        android:textSize="19sp"/>
+            <TextView
+                android:id="@+id/txtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textColor="@color/orange"
+                android:textSize="21sp"
+                android:textStyle="bold"/>
 
 
-    <LinearLayout
-        android:id="@+id/layoutButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:padding="7dp">
+            <TextView
+                android:id="@+id/txtPhoneNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number"
+                android:textColor="@color/black"
+                android:textSize="19sp"/>
 
 
-        <android.support.design.widget.FloatingActionButton
-            style="@style/MyMaterialTheme.Base.Scaled"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="msgWhatsapp"
-            android:src="@mipmap/whatsapp_icon"
-            app:backgroundTint="@color/whatsapp_color"
-            app:elevation="4dp"/>
-
-        <android.support.design.widget.FloatingActionButton
-            style="@style/MyMaterialTheme.Base.Scaled"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:onClick="mSg"
-            android:src="@mipmap/msg_icon"
-            app:backgroundTint="@color/orange"
-            app:elevation="4dp"/>
-
-        <android.support.design.widget.FloatingActionButton
-            style="@style/MyMaterialTheme.Base.Scaled"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="cAll"
-            android:src="@mipmap/calling_icon"
-            app:backgroundTint="@color/orange"
-            app:elevation="4dp"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvAlreadyHaveReminder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="NOTE-You have already set reminder for this contact !"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        android:textStyle="bold|italic"
-        android:visibility="gone"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="setReminder"
-        android:text="Set Reminder"/>
-
-    <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="canCel"
-        android:text="Cancel"
-        android:textAllCaps="false"/>
+            <LinearLayout
+                android:id="@+id/layoutButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:padding="7dp">
 
 
-    <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        app:adSize="BANNER"
-        app:adUnitId="ca-app-pub-8601880842629182/4212572539"
-        >
-    </com.google.android.gms.ads.AdView>
+                <android.support.design.widget.FloatingActionButton
+                    style="@style/MyMaterialTheme.Base.Scaled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="msgWhatsapp"
+                    android:src="@mipmap/whatsapp_icon"
+                    app:backgroundTint="@color/whatsapp_color"
+                    app:elevation="4dp"/>
+
+                <android.support.design.widget.FloatingActionButton
+                    style="@style/MyMaterialTheme.Base.Scaled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:onClick="mSg"
+                    android:src="@mipmap/msg_icon"
+                    app:backgroundTint="@color/orange"
+                    app:elevation="4dp"/>
+
+                <android.support.design.widget.FloatingActionButton
+                    style="@style/MyMaterialTheme.Base.Scaled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:onClick="cAll"
+                    android:src="@mipmap/calling_icon"
+                    app:backgroundTint="@color/orange"
+                    app:elevation="4dp"/>
 
 
+            </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:id="@+id/layoutEvents"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+            <android.support.v7.widget.CardView
+                android:id="@+id/cardview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                app:cardBackgroundColor="@color/orange"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="5dp">
+
+                <TextView
+                    android:id="@+id/tvMemo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:drawableRight="@mipmap/edit_icon"
+                    android:text="Tap to set Memo for 1232456789"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"/>
 
 
+            </android.support.v7.widget.CardView>
 
+
+            <TextView
+                android:id="@+id/tvAlreadyHaveReminder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="NOTE-You have already set reminder for this contact !"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                android:textStyle="bold|italic"
+                android:visibility="gone"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="setReminder"
+                android:text="Set Reminder"/>
+
+            <Button
+                android:id="@+id/btnCancel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="canCel"
+                android:text="Cancel"
+                android:textAllCaps="false"/>
+
+
+            <com.google.android.gms.ads.AdView
+                android:id="@+id/adView"
+                android:layout_width="320dp"
+                android:layout_height="50dp"
+                app:adSize="BANNER"
+                app:adUnitId="ca-app-pub-8601880842629182/4212572539"
+                >
+            </com.google.android.gms.ads.AdView>
+
+
+            <!--this layout to be used to dynamically add text views(last 5 events)-->
+            <LinearLayout
+                android:id="@+id/layoutEvents"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical"/>
 
 
         </LinearLayout>
-
 
 
     </ScrollView>

@@ -27,11 +27,19 @@
     </style>
 
 
-    <style name="actionbar_whiteback" parent="MyMaterialTheme.Base">
-        <item name="android:textColorSecondary">@color/white</item>
+    <style name="dialog_memo" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:colorAccent">@color/orange</item>
+        <item name="android:windowTitleStyle">@style/MyTitleTextStyle</item>
+    </style>
+    <style name="MyTitleTextStyle">
+        <item name="android:textColor">@color/orange</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
     </style>
 
 
+    <style name="actionbar_whiteback" parent="MyMaterialTheme.Base">
+        <item name="android:textColorSecondary">@color/white</item>
+    </style>
 
 
     <style name="Theme_DialogG" parent="Base.Theme.AppCompat.Dialog">
@@ -39,6 +47,7 @@
         <item name="android:windowActionBar">false</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>
+
     <style name="Theme_DialogAlarm" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowActionBar">false</item>
@@ -51,7 +60,6 @@
         <item name="android:backgroundDimEnabled">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
-
 
 
     <style name="MyTextInputLayout" parent="MyMaterialTheme.Base">
@@ -71,7 +79,6 @@
         <item name="android:textColor">@color/orange</item>
         <item name="android:textStyle">bold</item>
     </style>
-
 
 
     <style name="MyMaterialTheme.Base.AppBarOverlay"

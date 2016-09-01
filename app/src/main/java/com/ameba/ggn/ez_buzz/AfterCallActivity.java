@@ -1,5 +1,6 @@
 package com.ameba.ggn.ez_buzz;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -7,13 +8,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.support.design.widget.AppBarLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.text.Html;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.ameba.ggn.ez_buzz.realmUtills.ContactInfo;
 import com.ameba.ggn.ez_buzz.realmUtills.EventInfo;
 import com.ameba.ggn.ez_buzz.realmUtills.RealmHelperG;
 import com.ameba.ggn.ez_buzz.utillG.DBTools;
@@ -30,10 +37,11 @@ public class AfterCallActivity extends AppCompatActivity
 {
     String numberCalled = "";
 
-    private TextView txtName, txtPhoneNumber, tvAlreadyHaveReminder;
+    private TextView txtName, txtPhoneNumber, tvAlreadyHaveReminder, tvMemo;
     private LinearLayout layoutEvents;
 
-    Button btnCancel;
+    private Button btnCancel;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,6 +75,7 @@ public class AfterCallActivity extends AppCompatActivity
 
         tvAlreadyHaveReminder = (TextView) findViewById(R.id.tvAlreadyHaveReminder);
 
+
         txtName = (TextView) findViewById(R.id.txtName);
         txtPhoneNumber = (TextView) findViewById(R.id.txtPhoneNumber);
         txtPhoneNumber.setText(numberCalled);
@@ -91,6 +100,7 @@ public class AfterCallActivity extends AppCompatActivity
         startTimer();
 
 
+//        Events added
         layoutEvents = (LinearLayout) findViewById(R.id.layoutEvents);
         List<EventInfo> listEvents = RealmHelperG.getInstance(AfterCallActivity.this).GET_EVENTS();
         if (listEvents != null && listEvents.size() > 0)
@@ -103,7 +113,59 @@ public class AfterCallActivity extends AppCompatActivity
                 layoutEvents.addView(tvEvent);
             }
         }
+//        Events added end
 
+
+//memo added
+        tvMemo = (TextView) findViewById(R.id.tvMemo);
+        ContactInfo contactInfo = RealmHelperG.getInstance(AfterCallActivity.this).GET_MEMO_FOR_NUMBER(numberCalled);
+
+        if (contactInfo == null)
+        {
+            tvMemo.setText(String.format("Tap to set Memo for %s", numberCalled));
+        }
+        else
+        {
+            tvMemo.setText(String.format("Memo : %s", contactInfo.getMemo()));
+        }
+
+
+        ((CardView) findViewById(R.id.cardview)).setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                final AlertDialog.Builder builder = new AlertDialog.Builder(AfterCallActivity.this, R.style.dialog_memo);
+                builder.setTitle("Set memo");
+                builder.setMessage("Set memo for " + numberCalled);
+                final EditText ed = new EditText(AfterCallActivity.this);
+                ed.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                ed.setHint("enter memo here..");
+                ed.setTextColor(getResources().getColor(R.color.orange));
+                ed.setHintTextColor(getResources().getColor(R.color.extremelt_grey));
+                builder.setView(ed);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i)
+                    {
+                        tvMemo.setText(ed.getText().toString());
+
+                        ContactInfo contactInfo1 = new ContactInfo();
+                        contactInfo1.setName(txtName.getText().toString());
+                        contactInfo1.setMemo(ed.getText().toString());
+                        contactInfo1.setLastCallTime(System.currentTimeMillis() + "");
+                        contactInfo1.setNumber(numberCalled);
+
+                        RealmHelperG.getInstance(AfterCallActivity.this).SAVE_MEMO(contactInfo1);
+                    }
+                });
+                builder.setNegativeButton("Cancel", null);
+
+                builder.show();
+            }
+        });
+//memo added end
     }
 
     long finishTime = 0;
@@ -114,8 +176,6 @@ public class AfterCallActivity extends AppCompatActivity
 
         if (finishTime > 0)
         {
-
-
             handler = new CountDownTimer(finishTime * 1000, 1000)
             {
                 @Override

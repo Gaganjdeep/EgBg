@@ -165,9 +165,6 @@ public class AlarmActivity extends AppCompatActivity
 //        startActivityForResult(Intent.createChooser(intent, "Choose Messaging App"), 0);
 
         Utills.sendMSG(AlarmActivity.this, taskData.getPhonenumber(),"");
-
-
-
     }
 
     public void msgWhatsapp(View view)

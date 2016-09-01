@@ -145,7 +145,6 @@ public class ContactsListView extends RecyclerView
             @Override
             public void onFinish(String output)
             {
-
             }
 
             @Override
