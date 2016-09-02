@@ -21,7 +21,6 @@ public class ContainerActivity extends AppCompatActivity
 
         getSupportFragmentManager().beginTransaction().replace(R.id.containerLayout, new MemoListFragment()).commit();
 
-
     }
 
     private void setUptoolBar()

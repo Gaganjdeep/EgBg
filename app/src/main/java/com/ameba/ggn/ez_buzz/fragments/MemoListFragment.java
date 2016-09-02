@@ -1,10 +1,8 @@
 package com.ameba.ggn.ez_buzz.fragments;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,7 +14,6 @@ import com.ameba.ggn.ez_buzz.R;
 import com.ameba.ggn.ez_buzz.adapter.SuperAdapterG;
 import com.ameba.ggn.ez_buzz.realmUtills.ContactInfo;
 import com.ameba.ggn.ez_buzz.realmUtills.RealmHelperG;
-import com.ameba.ggn.ez_buzz.utillG.RoundedCornersGaganImg;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -66,20 +63,6 @@ public class MemoListFragment extends Fragment
                 {
                     e.printStackTrace();
                 }
-
-
-             /*   holder.view.setOnClickListener(new View.OnClickListener()
-                {
-                    @Override
-                    public void onClick(View view)
-                    {
-                        final Task currentTask = taskData;
-                        Log.d("KS", "Selected: " + currentTask.getId() + " " + currentTask.toString());
-                        Intent i = new Intent(activity, EditTask.class);
-                        i.putExtra("taskID", currentTask.getId() + "");
-                        activity.startActivity(i);
-                    }
-                });*/
             }
 
         });
