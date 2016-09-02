@@ -118,15 +118,17 @@ public class CallEndBroadCastReceiver extends BroadcastReceiver
 
     private void openAddAlarm(Context ctx, String number)
     {
-//        if (!dialogOpen)
-//        {
+
+
+        if (!dialogOpen)
+        {
             Intent addTaskIntent = new Intent(ctx, AfterCallActivity.class);
             addTaskIntent.putExtra(GlobalConstantsG.PHONE, number);
             addTaskIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             ctx.startActivity(addTaskIntent);
 
-//            dialogOpen = true;
-//        }
+            dialogOpen=true;
+        }
     }
 
 
@@ -158,7 +160,7 @@ public class CallEndBroadCastReceiver extends BroadcastReceiver
     //Incoming call-  goes from IDLE to RINGING when it rings, to OFFHOOK when it's answered, to IDLE when its hung up
     //Outgoing call-  goes from IDLE to OFFHOOK when it dials out, to IDLE when hung up
     private boolean alreadySaved = false;
-    private boolean dialogOpen   = false;
+    private boolean dialogOpen = false;
 
 
     public void onCallStateChanged(Context context, int state, String number)

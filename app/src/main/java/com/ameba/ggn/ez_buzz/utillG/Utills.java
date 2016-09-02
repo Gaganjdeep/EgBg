@@ -135,11 +135,8 @@ public class Utills
     }
 
 
-
-
     public static void copyStream(InputStream input, OutputStream output)
     {
-
         try
         {
             byte[] buffer = new byte[1024];
@@ -241,7 +238,9 @@ public class Utills
             public void onClick(View v)
             {
                 dialog.dismiss();
-
+//                Intent i = new Intent(con, MainActivity.class);
+//                con.startActivity(i);
+//                ((Activity)con).finish();
             }
         });
 

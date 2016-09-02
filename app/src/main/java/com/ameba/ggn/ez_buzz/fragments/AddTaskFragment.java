@@ -258,6 +258,8 @@ public class AddTaskFragment extends Fragment implements View.OnClickListener
 
 //                        context.startActivity(Intent.createChooser(intent, "Choose Messaging App"));
                     }
+
+
                 }
             });
         }

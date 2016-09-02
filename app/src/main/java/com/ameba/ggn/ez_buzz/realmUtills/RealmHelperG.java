@@ -80,6 +80,15 @@ public class RealmHelperG
     }
 
 
+    public List<ContactInfo> GET_ALL_MEMOS()
+    {
+        final Realm               realm            = Realm.getInstance(realmConfig);
+        RealmResults<ContactInfo> infoRealmResults = realm.where(ContactInfo.class).findAll();
+        List<ContactInfo>         contactInfoList  = realm.copyFromRealm(infoRealmResults);
+        return contactInfoList;
+    }
+
+
     public List<EventInfo> GET_EVENTS()
     {
         final Realm realm = Realm.getInstance(realmConfig);

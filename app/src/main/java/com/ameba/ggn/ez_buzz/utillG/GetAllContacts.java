@@ -44,11 +44,11 @@ public class GetAllContacts extends AsyncTask<Void, Void, List<ContactsModel>>
 
             String selection = ContactsContract.Contacts.HAS_PHONE_NUMBER;
 
-            String[] projection = new String[]{
+            /*String[] projection = new String[]{
                     ContactsContract.Contacts.HAS_PHONE_NUMBER,
                     ContactsContract.Contacts._ID,
                     ContactsContract.CommonDataKinds.Phone.NUMBER,
-                    ContactsContract.Contacts.DISPLAY_NAME};
+                    ContactsContract.Contacts.DISPLAY_NAME};*/
 
 
             ContentResolver cr = con.getContentResolver();

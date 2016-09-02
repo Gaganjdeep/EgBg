@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    package="com.ameba.ggn.ez_buzz"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest package="com.ameba.ggn.ez_buzz"
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.VIBRATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
@@ -18,9 +17,7 @@
     <!-- External storage for caching. -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-
     <uses-permission android:name="android.permission.INTERNET"/>
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
@@ -30,7 +27,7 @@
         android:launchMode="singleTop"
         android:theme="@style/MyMaterialTheme.Base">
         <activity
-            android:name="com.ameba.ggn.ez_buzz.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name">
         </activity>
         <!--
@@ -42,13 +39,13 @@
         </activity>
         -->
         <activity
-            android:name="com.ameba.ggn.ez_buzz.EditTask"
+            android:name=".EditTask"
             android:label="@string/title_activity_edit_task"
             android:theme="@style/MyMaterialTheme.Base"
             android:windowSoftInputMode="stateHidden">
         </activity>
 
-        <receiver android:name="com.ameba.ggn.ez_buzz.utillG.CallEndBroadCastReceiver">
+        <receiver android:name=".utillG.CallEndBroadCastReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE"/>
                 <action android:name="android.intent.action.NEW_OUTGOING_CALL"/>
@@ -56,19 +53,19 @@
         </receiver>
 
         <activity
-            android:name="com.ameba.ggn.ez_buzz.AlarmActivity"
+            android:name=".AlarmActivity"
             android:label="@string/title_activity_alarm"
             android:theme="@style/Theme_DialogAlarm">
         </activity>
 
-        <receiver android:name="com.ameba.ggn.ez_buzz.utillG.AlarmReceiver"/>
+        <receiver android:name=".utillG.AlarmReceiver"/>
 
         <activity
-            android:name="com.ameba.ggn.ez_buzz.AfterCallAddReminder"
+            android:name=".AfterCallAddReminder"
             android:windowSoftInputMode="stateHidden">
         </activity>
         <activity
-            android:name="com.ameba.ggn.ez_buzz.SplashScreen"
+            android:name=".SplashScreen"
             android:label="@string/app_name"
             android:noHistory="true"
             android:theme="@style/MyMaterialTheme.Base">
@@ -79,31 +76,34 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ameba.ggn.ez_buzz.SettingActivity"
+            android:name=".SettingActivity"
             android:label="@string/title_activity_setting"
             android:theme="@style/MyMaterialTheme.Base"
             android:windowSoftInputMode="stateHidden">
         </activity>
-        <activity android:name="com.ameba.ggn.ez_buzz.ContactsTab">
+        <activity android:name=".ContactsTab">
         </activity>
         <activity
-            android:name="com.ameba.ggn.ez_buzz.AfterCallActivity"
+            android:name=".AfterCallActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation"
             android:label=""
             android:noHistory="true"
-            android:configChanges="keyboard|keyboardHidden|orientation"
             android:theme="@style/Theme_DialogG">
         </activity>
         <activity
-            android:name="com.ameba.ggn.ez_buzz.app_intro.ColorAnimation"
+            android:name=".app_intro.ColorAnimation"
             android:noHistory="true">
         </activity>
 
-
-
-     <!--   <activity android:name="com.google.ads.AdActivity"
+        <!--
+            <activity android:name="com.google.ads.AdActivity"
                   android:configChanges="keyboard|keyboardHidden|orientation" />
--->
+        -->
 
+        <activity
+            android:name=".ContainerActivity"
+            android:label="Memo List">
+        </activity>
     </application>
 
 </manifest>
