@@ -10,10 +10,8 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ameba.ggn.ez_buzz.fragments.AddTaskFragment;
@@ -26,16 +24,13 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
 {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         setUptoolBar();
-
 
         ViewPager viewPagerG = (ViewPager) findViewById(R.id.viewpager);
         if (viewPagerG != null)
@@ -43,21 +38,17 @@ public class MainActivity extends AppCompatActivity
             setupViewPager(viewPagerG);
         }
 
-
         TabLayout tabLayoutG = (TabLayout) findViewById(R.id.tabs);
         tabLayoutG.setSelectedTabIndicatorColor(getResources().getColor(R.color.orange));
         tabLayoutG.setupWithViewPager(viewPagerG);
 
-
         setupTabLayout(tabLayoutG, viewPagerG);
-
 
         viewPagerG.addOnPageChangeListener(new ViewPager.OnPageChangeListener()
         {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
             {
-
             }
 
             @Override
@@ -69,17 +60,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onPageScrollStateChanged(int state)
             {
-
             }
         });
-
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu)
     {
-        getMenuInflater().inflate(R.menu.menu_main,menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
@@ -87,7 +76,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        if(item.getItemId()==R.id.settings)
+        if (item.getItemId() == R.id.settings)
         {
             startActivity(new Intent(MainActivity.this, SettingActivity.class));
         }
@@ -126,7 +115,6 @@ public class MainActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager)
     {
-
         addTaskFragment = new AddTaskFragment();
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new AllReminderFrag(), "");
@@ -154,11 +142,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     static class Adapter extends FragmentPagerAdapter
     {
-        private final List<Fragment> mFragments = new ArrayList<>();
-        private final List<String> mFragmentTitles = new ArrayList<>();
+        private final List<Fragment> mFragments      = new ArrayList<>();
+        private final List<String>   mFragmentTitles = new ArrayList<>();
 
         public Adapter(FragmentManager fm)
         {
@@ -211,28 +198,28 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
     public void threeHours(View view)
     {
         addTaskFragment.threeHours(view);
     }
 
     public void sixHours(View view)
-    {addTaskFragment.sixHours(view);
+    {
+        addTaskFragment.sixHours(view);
     }
 
     public void twelveHours(View view)
-    {addTaskFragment.twelveHours(view);
+    {
+        addTaskFragment.twelveHours(view);
     }
 
     public void adayHours(View view)
-    {addTaskFragment.adayHours(view);
+    {
+        addTaskFragment.adayHours(view);
     }
 
     public void selectDate(View view)
-    {addTaskFragment.selectDate(view);
+    {
+        addTaskFragment.selectDate(view);
     }
-
-
-
 }

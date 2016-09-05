@@ -2,7 +2,6 @@ package com.ameba.ggn.ez_buzz.realmUtills;
 
 import android.content.Context;
 
-import java.util.Collections;
 import java.util.List;
 
 import io.realm.Realm;

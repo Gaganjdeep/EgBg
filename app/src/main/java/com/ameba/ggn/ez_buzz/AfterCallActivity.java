@@ -134,6 +134,8 @@ public class AfterCallActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
+
+
                 final AlertDialog.Builder builder = new AlertDialog.Builder(AfterCallActivity.this, R.style.dialog_memo);
                 builder.setTitle("Set memo");
                 builder.setMessage("Set memo for " + numberCalled);
@@ -162,6 +164,9 @@ public class AfterCallActivity extends AppCompatActivity
                 builder.setNegativeButton("Cancel", null);
 
                 builder.show();
+
+
+
             }
         });
 //memo added end
