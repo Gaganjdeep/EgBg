@@ -1,8 +1,11 @@
 package com.ameba.ggn.ez_buzz.fragments;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -63,6 +66,59 @@ public class MemoListFragment extends Fragment
                 {
                     e.printStackTrace();
                 }
+
+                holder.view.setTag(model);
+                holder.view.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View view)
+                    {
+                        final ContactInfo contactInfo = (ContactInfo) view.getTag();
+
+                        final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+
+                        alertDialog.setTitle("Memo");
+
+                        alertDialog.setMessage("Are you sure,You want to delete this memo ?");
+
+                        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Delete", new DialogInterface.OnClickListener()
+                        {
+
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+                                alertDialog.dismiss();
+                                RealmHelperG.getInstance(getActivity()).DELETE_MEMO(contactInfo.getNumber());
+                                recyclerView.getAdapter().notifyDataSetChanged();
+                            }
+                        });
+
+                        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel", new DialogInterface.OnClickListener()
+                        {
+
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+                                alertDialog.dismiss();
+                            }
+                        });
+
+                       /* alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Delete", new DialogInterface.OnClickListener()
+                        {
+
+                            public void onClick(DialogInterface dialog, int id)
+                            {
+
+                                //...
+
+                            }
+                        });*/
+
+
+                        alertDialog.show();
+                    }
+                });
+
+
+
             }
 
         });

@@ -89,6 +89,20 @@ public class RealmHelperG
     }
 
 
+    public void DELETE_MEMO(final String phoneNumber)
+    {
+        final Realm realm = Realm.getInstance(realmConfig);
+        realm.executeTransaction(new Realm.Transaction()
+        {
+            @Override
+            public void execute(Realm realmG)
+            {
+                (realmG.where(ContactInfo.class).equalTo("Number", phoneNumber).findFirst()).removeFromRealm();
+            }
+        });
+    }
+
+
     public List<EventInfo> GET_EVENTS()
     {
         final Realm realm = Realm.getInstance(realmConfig);

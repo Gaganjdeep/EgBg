@@ -47,7 +47,7 @@ public class GetRecentContacts extends AsyncTask<Void, Void, List<ContactsModel>
                 CallLog.Calls.CACHED_NAME,
                 CallLog.Calls.DATE};
 
-        String sortOrder = String.format("%s limit 150 ", CallLog.Calls.DATE + " DESC");
+        String sortOrder = String.format("%s limit 100 ", CallLog.Calls.DATE + " DESC");
 
 
         Cursor cursor = con.getContentResolver().query(queryUri, projection, null, null, sortOrder);

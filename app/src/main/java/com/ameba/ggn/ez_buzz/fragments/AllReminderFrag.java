@@ -1,7 +1,9 @@
 package com.ameba.ggn.ez_buzz.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,10 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ameba.ggn.ez_buzz.ContainerActivity;
+import com.ameba.ggn.ez_buzz.MainActivity;
 import com.ameba.ggn.ez_buzz.R;
 import com.ameba.ggn.ez_buzz.Task;
 import com.ameba.ggn.ez_buzz.adapter.TaskRowAdapter;
 import com.ameba.ggn.ez_buzz.utillG.DBTools;
+import com.ameba.ggn.ez_buzz.utillG.Utills;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,7 +28,9 @@ import java.util.List;
 public class AllReminderFrag extends Fragment
 {
     private RecyclerView allTasksListView;
-    private List<Task> tasks;
+    private List<Task>   tasks;
+
+    private FloatingActionButton btnShowMemoList;
 
 
     public AllReminderFrag()
@@ -37,7 +44,20 @@ public class AllReminderFrag extends Fragment
                              Bundle savedInstanceState)
     {
 
+
         View v = inflater.inflate(R.layout.all_reminders, container, false);
+
+        btnShowMemoList = (FloatingActionButton) v.findViewById(R.id.btnShowMemoList);
+
+        btnShowMemoList.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+//                startActivity(new Intent(getActivity(), ContainerActivity.class));
+                Utills.transitionToActivity(getActivity(),ContainerActivity.class, view, "toolbar");
+            }
+        });
 
         allTasksListView = (RecyclerView) v.findViewById(R.id.allTasksListView);
 

@@ -156,7 +156,7 @@
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="50dp"
                 android:onClick="dOne"
-                android:src="@mipmap/complete_icon"
+                android:src="@mipmap/ic_done_tick"
                 android:text="Done"
                 app:backgroundTint="@color/orange"
                 app:elevation="4dp"/>

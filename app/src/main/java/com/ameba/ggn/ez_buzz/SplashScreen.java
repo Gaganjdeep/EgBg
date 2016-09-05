@@ -81,7 +81,7 @@ public class SplashScreen extends AppCompatActivity
             if (PrefHelper.isFirstTime(SplashScreen.this))
             {
                 Intent i = new Intent(getApplicationContext(), ColorAnimation.class);
-                 startActivity(i);
+                startActivity(i);
             }
             else
             {
